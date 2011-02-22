@@ -8,6 +8,14 @@ setup(
     author_email='patrick@vonautomatisch.at',
     url='http://code.google.com/p/django-filebrowser/',
     packages=find_packages(),
+    package_data={
+        'filebrowser': [
+            'locale/*/LC_MESSAGES/*.po','locale/*/LC_MESSAGES/*.mo',
+	    'media/filebrowser/css/*.css','media/filebrowser/js/*.js','media/filebrowser/img/*.gif','media/filebrowser/img/*.png',
+	    'media/filebrowser/uploadify/*.*','media/filebrowser/uploadify/com/adobe/*/*.*','media/filebrowser/uploadify/com/adobe/*/*/*.*','media/filebrowser/uploadify/com/adobe/*/*/*/*.*',
+	    'templates/filebrowser/*.html','templates/filebrowser/include/*.html'
+        ]
+    },
     include_package_data=True,
     zip_safe=False,
     classifiers=[
