@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n adminmedia fb_tags fb_pagination %}
+{% load i18n adminmedia fb_tags fb_pagination nephila_admin %}
 
 <!-- STYLESHEETS -->
 {% block extrastyle %}
@@ -31,6 +31,27 @@
         #changelist table thead th:first-child { width: inherit; }
     </style>
     {% endif %}
+<link rel="stylesheet" type="text/css" href="{{ CMS_MEDIA_URL }}css/pages.css"/>
+<link rel="stylesheet" type="text/css" href="{{ CMS_MEDIA_URL }}css/jquery.dialog.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/change_list.css"/>
+
+{{ block.super }}
+<script type="text/javascript" src="{{ CMS_MEDIA_URL }}js/lib/jquery.js"></script>
+<script type="text/javascript" src="{{ CMS_MEDIA_URL }}js/csrf.js"></script>
+<script type="text/javascript" src="{{ CMS_MEDIA_URL }}js/lib/jquery.livequery.js"></script>
+
+<script type="text/javascript" src="{{ CMS_MEDIA_URL }}js/lib/ui.core.js"></script>
+<script type="text/javascript" src="{{ CMS_MEDIA_URL }}js/change_list.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+(function($) {
+    showchangelistfilter = function(){
+        $("#changelist-filter").toggle();
+    }
+
+})(jQuery);
+//]]>
+</script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
@@ -66,7 +87,8 @@
                 {% pagination %}
             </div>
         </div>
-        <div id="changelist-filter">
+        <a href="javascript:showchangelistfilter();" id="changelist-filter-button">{% trans "Filter:" %} {% if query.filter_date or query.filter_type %}{% trans "on" %}{% else %}{% trans "off" %}{% endif %}</a>
+        <div id="changelist-filter" style="display:none;">
             {% include "filebrowser/include/filter.html" %}
         </div>
     </div>
