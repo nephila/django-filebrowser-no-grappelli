@@ -80,7 +80,7 @@
                 <td class="fb_icon">
                     {% selectable image_version.filetype query.type %}
                     {% if selectable %}
-                        <button class="button fb_selectlink" onclick="FileSubmit('{{ image_version.url_relative }}', '{{ image_version.url_thumbnail }}', '{{ image_version.filetype }}');">{% trans "Select" %}</button>
+                        <button class="button fb_selectlink" onclick="FileSubmit('{{ image_version.url_save }}', '{{ image_version.url_thumbnail }}', '{{ image_version.filetype }}');">{% trans "Select" %}</button>
                     {% else %}
                         &nbsp;
                     {% endif %}
