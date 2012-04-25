@@ -6,7 +6,7 @@
 <!-- STYLESHEETS -->
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+    <link rel="stylesheet" type="text/css" href="{% custom_admin_media_prefix %}css/changelists.css" />
     <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
     {% if query.pop %}
     <style type="text/css">
@@ -33,7 +33,7 @@
 
     {% ifequal query.pop '3' %}
     <!-- CKeditor (former "FCKeditor") -->
-    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_CKeditor.js"></script>
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_CKEditor.js"></script>
     {% endifequal %}
 
     {{ media }}

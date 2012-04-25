@@ -2,13 +2,14 @@
 
 # django imports
 from django import template
-from django.utils.encoding import smart_unicode
-from django.utils.safestring import mark_safe
+from django.utils.http import urlquote
 
 # filebrowser imports
 from filebrowser.settings import SELECT_FORMATS
 
 register = template.Library()
+
+
 
 
 @register.inclusion_tag('filebrowser/include/_response.html', takes_context=True)
@@ -60,7 +61,7 @@ def get_query_string(p, new_params=None, remove=None):
             del p[k]
         elif v is not None:
             p[k] = v
-    return mark_safe('?' + '&'.join([u'%s=%s' % (k, v) for k, v in p.items()]).replace(' ', '%20'))
+    return '?' + '&'.join([u'%s=%s' % (urlquote(k), urlquote(v)) for k, v in p.items()])
 
 
 def string_to_dict(string):
@@ -138,3 +139,17 @@ def selectable(parser, token):
     return SelectableNode(filetype, format)
     
 register.tag(selectable)
+
+@register.simple_tag
+def custom_admin_media_prefix():
+    import django
+    if "1.4" in django.get_version():
+        from django.conf import settings
+        return "".join([settings.STATIC_URL,"admin/"])
+    else:
+        try:
+            from django.contrib.admin.templatetags import admin_media_prefix
+        except ImportError:
+            from django.contrib.admin.templatetags.adminmedia import admin_media_prefix
+        return admin_media_prefix
+
