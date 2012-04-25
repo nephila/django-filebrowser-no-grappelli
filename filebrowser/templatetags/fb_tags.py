@@ -13,9 +13,9 @@ register = template.Library()
 def complete_url(value):
     """ Returns the integer remainder of the division of value by arg """
     if ABSOLUTE_URL:
-        return "http://%s" % Site.objects.get_current().domain
+        return "http://%s%s" % (Site.objects.get_current().domain,value)
     else:
-        return ""
+        return value
 register.filter('complete_url', complete_url)
 
 
