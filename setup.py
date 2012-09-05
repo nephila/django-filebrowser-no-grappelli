@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='django-filebrowser',
+    name='django-filebrowser-no-grappelli',
     version='3.0',
     description='Media-Management with the Django Admin-Interface.',
     author='Patrick Kranzlmueller',
