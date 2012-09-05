@@ -141,8 +141,7 @@ def selectable(parser, token):
     try:
         tag, filetype, format = token.split_contents()
     except:
-        raise TemplateSyntaxError, "%s tag requires 2 arguments" % token.contents.split()[0]
-
+        raise template.TemplateSyntaxError, "%s tag requires 2 arguments" % token.contents.split()[0]
     return SelectableNode(filetype, format)
 
 register.tag(selectable)
@@ -158,5 +157,5 @@ def custom_admin_media_prefix():
             from django.contrib.admin.templatetags import admin_media_prefix
         except ImportError:
             from django.contrib.admin.templatetags.adminmedia import admin_media_prefix
-        return unicode(admin_media_prefix())
+        return admin_media_prefix()
 
